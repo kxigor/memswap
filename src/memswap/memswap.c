@@ -62,6 +62,23 @@ void memswap_xor32(void* a, void* b, size_t sze)
     }
 }
 
+void memswap_xor8(void* a, void* b, size_t sze)
+{
+    int8_t* ptr_8_a = (int8_t*)a;
+    int8_t* ptr_8_b = (int8_t*)b;
+
+    for (; sze > 0; sze -= SZE8, ptr_8_a++, ptr_8_b++)
+    {
+        if(*ptr_8_a == *ptr_8_b)
+        {
+            continue;
+        }
+        *ptr_8_a ^= *ptr_8_b;
+        *ptr_8_b ^= *ptr_8_a;
+        *ptr_8_a ^= *ptr_8_b;
+    }
+}
+
 void memswap_tmp64(void* a, void* b, size_t sze)
 {
     int64_t* ptr_64_a = (int64_t*)a;
@@ -125,23 +142,6 @@ void memswap_tmp32(void* a, void* b, size_t sze)
 
         sze -= SZE8;
         ptr_8_a++, ptr_8_b++  ;
-    }
-}
-
-void memswap_xor8(void* a, void* b, size_t sze)
-{
-    int8_t* ptr_8_a = (int8_t*)a;
-    int8_t* ptr_8_b = (int8_t*)b;
-
-    for (; sze > 0; sze -= SZE8, ptr_8_a++, ptr_8_b++)
-    {
-        if(*ptr_8_a == *ptr_8_b)
-        {
-            continue;
-        }
-        *ptr_8_a ^= *ptr_8_b;
-        *ptr_8_b ^= *ptr_8_a;
-        *ptr_8_a ^= *ptr_8_b;
     }
 }
 
