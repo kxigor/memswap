@@ -52,5 +52,7 @@ Mkfile.old
 dkms.conf
 
 # VSCODE
+.vscode/
 
-./.vscode
+# TESTS
+*.in

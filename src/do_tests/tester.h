@@ -9,34 +9,28 @@
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
-
+#include <time.h>
 #define PATH_MAX 4096
 
 typedef uint8_t BYTE;
 
-typedef struct Result
-{
-    size_t block_sze;
-    double time     ;
-} Result;
-
-
 void start_testing(
     const char* tests_in_dir , 
-    const char* tests_out_dir, 
-    void (*swap_ptr)(
-        const void*, 
-        const void*, 
+    const char* tests_out_dir,
+    const char* swap_name    ,
+    void (*swap_testing)(
+        void*, 
+        void*, 
         size_t
     )
 );
 
-Result do_test(
+void do_test(
     FILE*  in_file,
     FILE* out_file,
-    void (*swap_ptr)(
-        const void*, 
-        const void*, 
+    void (*swap_testing)(
+        void*, 
+        void*, 
         size_t
     )
 );

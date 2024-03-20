@@ -7,8 +7,9 @@
 int main(void)
 {
     start_testing(
-        "./src",
-        "out",
+        "./tests/tests",
+        "./result" ,
+        "memswap_xor64",
         memswap_xor64
     );
 }
