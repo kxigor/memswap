@@ -9,6 +9,40 @@ void DirInit(const char* dir_path)
     system(command);
 }
 
+void DirFileInit(const char* file_path)
+{
+    assert(file_path != NULL);
+
+    static char dir_path[PATH_MAX] = {};
+    sprintf(dir_path, "%s", file_path);
+
+    size_t dir_path_len = strlen(dir_path);
+
+    if(dir_path_len <= 2)
+    {
+        return;
+    }
+
+    size_t slash_pos = 0;
+
+    for(size_t pos = 0; pos < dir_path_len - 1; pos++)
+    {
+        if(dir_path[pos] == '/')
+        {
+            slash_pos = pos;
+        }
+    }
+
+    if(slash_pos == 0)
+    {
+        return;
+    }
+
+    dir_path[slash_pos] = '\0';
+
+    DirInit(dir_path);
+}
+
 Dir* DirCtor(const char* dir_path)
 {
     assert(dir_path != NULL);

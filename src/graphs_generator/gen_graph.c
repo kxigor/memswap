@@ -1,38 +1,35 @@
 #include "gen_graph.h"
 
-void ScriptGraphCreate(
+void ScriptGraph(
     const char* result_dir,
-    const char* graph_dir ,
-    const char* graph_name,
-    const char* footage_dir,
-    const char* footage_name
+    const char* graph_pwd ,
+    const char* footage_pwd
 )
 {
     assert(result_dir   != NULL);
-    assert(graph_dir    != NULL);
-    assert(graph_name   != NULL);
-    assert(footage_dir  != NULL);
-    assert(footage_name != NULL);
+    assert(graph_pwd    != NULL);
+    assert(footage_pwd  != NULL);
+    
+    /*
+        Initialize the directory for the future graph
+    */
+    DirFileInit(graph_pwd);
 
-    DirInit(graph_dir);
-
-    static char footage_pwd[PATH_MAX] = {};
-    sprintf(
-        footage_pwd,
-        "%s/%s",
-        footage_dir,
-        footage_name
-    );
-
+    /*
+        Opening the file with the code template
+    */
     FILE* footage = fopen(footage_pwd, "r");
     assert(footage != NULL);
 
-    /*Getting the file size*/
+    /*
+        Getting the file size
+    */
     fseek(footage, 0, SEEK_END);
     long footage_size = ftell(footage);
     fseek(footage, 0, SEEK_SET);
 
     /*
+        Reading the contents of the footages
         Add 1 for the ending character i.e. '\0'
     */
     char* buffer = calloc(footage_size + 1, sizeof(char));
@@ -52,20 +49,21 @@ void ScriptGraphCreate(
     fined_names[strlen(signature_names) - 1] = '\0';
     fined_path [strlen(signature_path ) - 1] = '\0';
 
-    static char graph_pwd[PATH_MAX] = {};
-
-    sprintf(
-        graph_pwd   ,
-        "%s/%s"     ,
-        graph_dir   ,
-        graph_name
-    );
-
+    /*
+        I think it can be better, but so far so
+    */
     FILE* python = fopen("tmp.py", "w");
     assert(python != NULL);
 
+    /*
+        We insert the first part of the program
+    */
     fprintf(python, "%s", buffer);
 
+    /*
+        We insert the names of 
+        the files with the results
+    */
     Dir* dir = DirCtor(result_dir);
     char* test_name = NULL;
     if((test_name = DirGetNextFileName(dir)) != NULL)
@@ -78,11 +76,36 @@ void ScriptGraphCreate(
     }
     DirDtor(dir);
 
+    /*
+        We insert the following part of the program
+    */
     fprintf(python, "%s", fined_names + strlen(signature_names));
+
+    /*
+        Inserting the path to save the image
+    */
     fprintf(python, "'%s'", graph_pwd);
     fprintf(python, "%s", fined_path + strlen(signature_path));
 
     fclose(python);
 
     free(buffer);
+
+    /*
+        We build a graph and delete the script
+    */
+    static char command[PATH_MAX + 256] = {};
+    sprintf(
+        command,
+        "python3 %s",
+        temp_script_pwd
+    );
+    system(command);
+
+    sprintf(
+        command,
+        "rm %s",
+        temp_script_pwd
+    );
+    system(command);
 }

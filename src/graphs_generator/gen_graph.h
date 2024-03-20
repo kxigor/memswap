@@ -6,22 +6,12 @@
 static const char* signature_names = "file_names = [ ";
 static const char* signature_path  = "plt.savefig( ";
 
-void ScriptGraphCreate(
+static const char* temp_script_pwd = "tmp.py";
+
+void ScriptGraph(
     const char* result_dir,
-    const char* graph_dir ,
-    const char* graph_name,
-    const char* footage_dir,
-    const char* footage_name
-);
-
-void ScriptGraphExecute(
-    const char* graph_dir ,
-    const char* graph_name
-);
-
-void ScriptGraphDelete(
-    const char* graph_dir ,
-    const char* graph_name
+    const char* graph_pwd ,
+    const char* footage_pwd
 );
 
 #endif // !GEN_GRAPH_H

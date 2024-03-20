@@ -16,7 +16,6 @@ typedef struct Dir
     char* dir_path  ;
 } Dir;
 
-
 /*
     The folder does not necessarily exist, 
     we mean that there is a nesting of non-existent folders
@@ -24,6 +23,12 @@ typedef struct Dir
     Hardware dependent, calls mkdir -p
 */
 void    DirInit(const char* dir_path);
+
+/*
+    Similar things happen in Dir Init, 
+    but only the file name
+*/
+void    DirFileInit(const char* file_path);
 
 /*
     Create a folder object
