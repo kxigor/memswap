@@ -34,7 +34,7 @@ Dir*    DirCtor(const char* dir_path);
     To return the following file, 
     we do not consider folders as files
 */
-FILE*   DirGetNextFile  (Dir* dir);
+char* DirGetNextFileName(Dir* dir);
 
 /*
     If there is a Ctor, 

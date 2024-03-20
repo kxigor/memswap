@@ -49,10 +49,13 @@ void start_testing(
     fprintf(output_file, "%s\n", swap_name);
 
     Dir* input_dir = DirCtor(tests_in_dir);
-    FILE* input_file = NULL;
+    char* input_file_name = NULL;
 
-    while ((input_file = DirGetNextFile(input_dir)) != NULL)
+    while ((input_file_name = DirGetNextFileName(input_dir)) != NULL)
     {
+        FILE* input_file = fopen(input_file_name, "rb");
+        assert(input_file != NULL);
+
         do_test(
             input_file  ,
             output_file ,
@@ -60,7 +63,7 @@ void start_testing(
         );
 
         fclose(input_file);
-        input_file = NULL;
+        free(input_file_name);
     }
 
     fclose(output_file);

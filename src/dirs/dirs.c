@@ -35,7 +35,7 @@ Dir* DirCtor(const char* dir_path)
     return dir;
 }
 
-FILE* DirGetNextFile(Dir* dir)
+char* DirGetNextFileName(Dir* dir)
 {
     assert(dir != NULL);
     assert(dir->dir != NULL);
@@ -46,7 +46,7 @@ FILE* DirGetNextFile(Dir* dir)
     struct dirent* file_object = NULL;
     struct stat file_stat = {};
 
-    FILE* outfile = NULL;
+    char* outfilename = NULL;
 
     while ((file_object = readdir(dir->dir)) != NULL)
     {
@@ -75,7 +75,7 @@ FILE* DirGetNextFile(Dir* dir)
             It feels like it's possible to do better
         */
 
-        outfile = fopen(file_pwd, "rb");
+        outfilename = strdup(file_pwd);
         
         /*
             We are getting out of the cycle, 
@@ -84,7 +84,7 @@ FILE* DirGetNextFile(Dir* dir)
         break;
     }
 
-    return outfile;
+    return outfilename;
 }
 
 void DirDtor(Dir* dir)
