@@ -1,9 +1,12 @@
 #include <assert.h>
 #include <malloc.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+#include "../dirs/dirs.h"
 
 #define PATH_MAX 4096
 
@@ -23,18 +26,23 @@ typedef struct Request
 } Request;
 
 void RequestReceive(Request* req);
-void RequestExecute(Request* req);
+bool RequestExecute(Request* req);
 void RequestClear  (Request* req);
 
-uint8_t gen_rand(uint8_t min, uint8_t max);
+BYTE gen_rand_byte(BYTE min, BYTE max);
 
 int main(void)
 {
     srand(time(NULL));
 
+    bool ex_st = false;
+
     Request req = {};
     RequestReceive  (&req);
+    ex_st = 
     RequestExecute  (&req);
+    assert(ex_st);
+    printf("The request was completed successfully!");
     RequestClear    (&req);
 }
 
@@ -67,7 +75,7 @@ void RequestReceive(Request* req)
     scanf("%hhu", &req->max_val);
 }
 
-void RequestExecute(Request* req)
+bool RequestExecute(Request* req)
 {
     assert(req != NULL);
     assert(req->tests_dir != NULL);
@@ -80,13 +88,7 @@ void RequestExecute(Request* req)
     BYTE* buf = calloc(req->to * 2, sizeof(BYTE));
     assert(buf != NULL);
 
-    char out_dir_mkdir_command[PATH_MAX] = {};
-    sprintf(
-        out_dir_mkdir_command,
-        "mkdir -p %s",
-        req->tests_dir
-    );
-    system(out_dir_mkdir_command);
+    DirInit(req->tests_dir);
 
     for(size_t pos = req->from; pos <= req->to; pos += req->step)
     {
@@ -108,7 +110,10 @@ void RequestExecute(Request* req)
             */
             for(size_t byte_pos = 0; byte_pos < pos * 2; byte_pos++)
             {
-                buf[byte_pos] = gen_rand(req->min_val, req->max_val);
+                buf[byte_pos] = gen_rand_byte(
+                    req->min_val, 
+                    req->max_val
+                );
             }
 
             fwrite(buf, sizeof(BYTE), pos * 2, outfile);
@@ -116,7 +121,6 @@ void RequestExecute(Request* req)
             fclose(outfile);
         }
     }
-    printf("Successfully!\n");
 }
 
 void RequestClear(Request* req)
@@ -126,7 +130,7 @@ void RequestClear(Request* req)
     free(req->tests_dir);
 }
 
-uint8_t gen_rand(uint8_t min, uint8_t max)
+BYTE gen_rand_byte(BYTE min, BYTE max)
 {
     if(min >= max)
     {

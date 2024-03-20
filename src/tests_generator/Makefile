@@ -6,10 +6,8 @@ CFLAGS += -D _DEBUG -ggdb3 -Wall -Wextra  -Waggressive-loop-optimizations -Wmiss
 
 OBJ_DIR = obj
 
-SRCS  = testing.c
-SRCS += src/memswap/memswap.c
-SRCS += src/do_tests/tester.c
-SRCS += src/dirs/dirs.c
+SRCS  = gen_test.c
+SRCS += ../dirs/dirs.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -17,8 +15,8 @@ OBJS = $(SRCS:.c=.o)
 	@mkdir -p $(dir $(OBJ_DIR)/$@)
 	@$(CC) $(CFLAGS) -c $< -o $(OBJ_DIR)/$@
 
-swaps: $(OBJS)
+gen_test: $(OBJS)
 	@$(CC) $(CFLAGS) $(patsubst %,obj/%,$(OBJS)) -o $@
 
 clean:
-	rm -rf $(OBJ_DIR) swaps
+	rm -rf $(OBJ_DIR) gen_test

@@ -24,24 +24,10 @@ void start_testing(
     assert(swap_testing  != NULL);
 
     /*
-        Opening a directory with tests, 
-        any file other than a folder is considered a test
+        The specified folder 
+        does not necessarily exist
     */
-    DIR* dir = opendir(tests_in_dir);
-    assert(dir != NULL);
-
-    /*
-        The directory that we need does not necessarily exist, 
-        and the built-in mkdir will not help 
-        because we may have nesting of the remaining folders
-    */
-    char out_dir_mkdir_command[PATH_MAX] = {};
-    sprintf(
-        out_dir_mkdir_command,
-        "mkdir -p %s",
-        tests_out_dir
-    );
-    system(out_dir_mkdir_command);
+    DirInit(tests_out_dir);
 
     /*
         Open the output file, 
@@ -54,7 +40,6 @@ void start_testing(
         tests_out_dir   ,
         swap_name
     );
-    printf("%s\n", output_file_pwd);
     FILE* output_file = fopen(output_file_pwd, "w");
     assert(output_file != NULL);
     /*
@@ -63,36 +48,11 @@ void start_testing(
     */
     fprintf(output_file, "%s\n", swap_name);
 
-    /*The full path to the file*/
-    char            input_file_pwd[PATH_MAX] = {};
-    /*the object from the dictory*/
-    struct dirent*  input_file_object = NULL;
-    /*We get information about the object that we considered*/
-    struct stat     input_file_stat = {};
+    Dir* input_dir = DirCtor(tests_in_dir);
+    FILE* input_file = NULL;
 
-    while ((input_file_object = readdir(dir)) != NULL)
+    while ((input_file = DirGetNextFile(input_dir)) != NULL)
     {
-        sprintf(
-            input_file_pwd,
-            "%s/%s"       ,
-            tests_in_dir  , 
-            input_file_object->d_name
-        );
-
-        int stat_status = stat(input_file_pwd, &input_file_stat);
-
-        /*there is no access to the file*/
-        assert(stat_status == 0);
-
-        if(S_ISDIR(input_file_stat.st_mode))
-        {
-            /*We were counting the folder*/
-            continue;
-        }
-
-        FILE* input_file = fopen(input_file_pwd, "rb");
-        assert(input_file != NULL);
-        
         do_test(
             input_file  ,
             output_file ,
@@ -100,10 +60,11 @@ void start_testing(
         );
 
         fclose(input_file);
+        input_file = NULL;
     }
 
     fclose(output_file);
-    closedir(dir);
+    DirDtor(input_dir);
 }
 
 void do_test(

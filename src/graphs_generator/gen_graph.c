@@ -5,11 +5,12 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-#include <sys/stat.h>
+
+#include "../dirs/dirs.h"
 
 void ScriptCreate(
     const char* result_dir  ,
-    const char* graph_dir   ,
+    const char* graph_dir 
     
 );
 void ScriptExecute  ();

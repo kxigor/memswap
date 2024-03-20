@@ -10,6 +10,9 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <time.h>
+
+#include "../dirs/dirs.h"
+
 #define PATH_MAX 4096
 
 typedef uint8_t BYTE;
