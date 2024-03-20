@@ -3,7 +3,6 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/stat.h>
 #include <time.h>
 
 #define PATH_MAX 4096
@@ -75,10 +74,19 @@ void RequestExecute(Request* req)
 
     char filename[PATH_MAX] = {};
 
-    BYTE* buf = calloc(req->to, sizeof(BYTE));
+    /*
+        Multiply by 2 because we work with two memory sections
+    */
+    BYTE* buf = calloc(req->to * 2, sizeof(BYTE));
     assert(buf != NULL);
 
-    mkdir(req->tests_dir, 0777);
+    char out_dir_mkdir_command[PATH_MAX] = {};
+    sprintf(
+        out_dir_mkdir_command,
+        "mkdir -p %s",
+        req->tests_dir
+    );
+    system(out_dir_mkdir_command);
 
     for(size_t pos = req->from; pos <= req->to; pos += req->step)
     {
@@ -95,16 +103,20 @@ void RequestExecute(Request* req)
             FILE* outfile = fopen(filename, "wb");
             assert(outfile != NULL);
 
-            for(size_t byte_pos = 0; byte_pos < pos; byte_pos++)
+            /*
+                Multiply by 2 because we work with two memory sections
+            */
+            for(size_t byte_pos = 0; byte_pos < pos * 2; byte_pos++)
             {
                 buf[byte_pos] = gen_rand(req->min_val, req->max_val);
             }
 
-            fwrite(buf, sizeof(BYTE), pos, outfile);
+            fwrite(buf, sizeof(BYTE), pos * 2, outfile);
 
             fclose(outfile);
         }
     }
+    printf("Successfully!\n");
 }
 
 void RequestClear(Request* req)

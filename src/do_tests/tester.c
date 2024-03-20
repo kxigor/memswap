@@ -23,11 +23,30 @@ void start_testing(
     assert(swap_name     != NULL);
     assert(swap_testing  != NULL);
 
+    /*
+        Opening a directory with tests, 
+        any file other than a folder is considered a test
+    */
     DIR* dir = opendir(tests_in_dir);
     assert(dir != NULL);
 
-    mkdir(tests_out_dir, 0777);
+    /*
+        The directory that we need does not necessarily exist, 
+        and the built-in mkdir will not help 
+        because we may have nesting of the remaining folders
+    */
+    char out_dir_mkdir_command[PATH_MAX] = {};
+    sprintf(
+        out_dir_mkdir_command,
+        "mkdir -p %s",
+        tests_out_dir
+    );
+    system(out_dir_mkdir_command);
 
+    /*
+        Open the output file, 
+        all the results will be written to it
+    */
     char output_file_pwd[PATH_MAX] = {};
     sprintf(
         output_file_pwd ,
@@ -124,7 +143,6 @@ void do_test(
         they are the same size, so it should be divided by 2
     */
     assert(in_file_size % 2 == 0);
-
     size_t block_sze = in_file_size / 2;
 
     BYTE* result_buffer = calloc(in_file_size, sizeof(BYTE));
@@ -166,7 +184,7 @@ void do_test(
 
     fprintf(
         out_file    ,
-        "%zu %f\n"    ,
+        "%zu %f\n"  ,
         block_sze   ,
         (double)(stop - start) / (double)CLOCKS_PER_SEC
     );
