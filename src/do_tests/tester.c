@@ -84,7 +84,9 @@ void do_test(
     assert(out_file     != NULL);
     assert(swap_testing != NULL);
 
-    /*Getting the file size*/
+    /*
+        Getting the file size
+    */
     fseek(in_file, 0, SEEK_END);
     size_t in_file_size = (size_t)ftell(in_file);
     fseek(in_file, 0, SEEK_SET);

@@ -34,7 +34,7 @@ BYTE gen_rand_byte(BYTE min, BYTE max);
 
 int main(void)
 {
-    srand(time(NULL));
+    srand((uint32_t)time(NULL));
 
     bool ex_st = false;
 
@@ -81,6 +81,16 @@ bool RequestExecute(Request* req)
     assert(req != NULL);
     assert(req->tests_dir != NULL);
 
+    if(req == NULL)
+    {
+        return false;
+    }
+
+    if(req->tests_dir == NULL)
+    {
+        return false;
+    }
+
     char filename[PATH_MAX] = {};
 
     /*
@@ -88,6 +98,11 @@ bool RequestExecute(Request* req)
     */
     BYTE* buf = calloc(req->to * 2, sizeof(BYTE));
     assert(buf != NULL);
+
+    if(buf == NULL)
+    {
+        return false;
+    }
 
     DirInit(req->tests_dir);
 
@@ -105,6 +120,10 @@ bool RequestExecute(Request* req)
 
             FILE* outfile = fopen(filename, "wb");
             assert(outfile != NULL);
+            if(outfile == NULL)
+            {
+                return false;
+            }
 
             /*
                 Multiply by 2 because we work with two memory sections
@@ -122,6 +141,8 @@ bool RequestExecute(Request* req)
             fclose(outfile);
         }
     }
+
+    return true;
 }
 
 void RequestClear(Request* req)
@@ -137,5 +158,5 @@ BYTE gen_rand_byte(BYTE min, BYTE max)
     {
         return min;
     }
-    return min + rand() % (max - min);
+    return min + (BYTE)(rand() % (max - min));
 }
