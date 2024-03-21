@@ -3,10 +3,10 @@
 
 #include "../dirs/dirs.h"
 
-static const char* signature_names = "file_names = [ ";
-static const char* signature_path  = "plt.savefig( ";
+extern const char* signature_names  ;
+extern const char* signature_path   ;
 
-static const char* temp_script_pwd = "tmp.py";
+extern const char* temp_script_pwd  ;
 
 void ScriptGraph(
     const char* result_dir,

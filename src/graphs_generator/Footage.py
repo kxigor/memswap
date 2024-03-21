@@ -3,7 +3,7 @@ from collections import defaultdict
 
 data = defaultdict(list)
 
-file_names = [ ]
+file_names = [ ] # First signature position, Cannot be edited
 
 for file_name in file_names:
     with open(file_name, 'r') as file:
@@ -25,10 +25,10 @@ sorted_data = dict(sorted(averaged_data.items()))
 for function_name, values in sorted_data.items():
     values.sort(key=lambda x: x[0])
     n_values, time_values = zip(*values)
-    plt.plot(n_values, time_values, label=function_name, linewidth=0.5)
+    plt.plot(n_values, time_values, label=function_name, linewidth=0.75)
 
 plt.xlabel('Block Size (n)')
 plt.ylabel('Time (s)')
 plt.legend()
 plt.title('Comparison of execution time')
-plt.savefig( , dpi=600)
+plt.savefig( , dpi=600) # Second signature position, Cannot be edited

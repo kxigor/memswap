@@ -1,6 +1,8 @@
 #ifndef TESTER_H
 #define TESTER_H
 
+#include <stdlib.h>
+
 #include <assert.h>
 #include <dirent.h>
 #include <malloc.h>

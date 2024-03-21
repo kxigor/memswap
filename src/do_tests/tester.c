@@ -86,7 +86,7 @@ void do_test(
 
     /*Getting the file size*/
     fseek(in_file, 0, SEEK_END);
-    long in_file_size = ftell(in_file);
+    size_t in_file_size = (size_t)ftell(in_file);
     fseek(in_file, 0, SEEK_SET);
 
     BYTE* buffer = calloc(in_file_size, sizeof(BYTE));

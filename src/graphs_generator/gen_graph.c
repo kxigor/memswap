@@ -1,5 +1,10 @@
 #include "gen_graph.h"
 
+const char* signature_names = "file_names = [ ";
+const char* signature_path  = "plt.savefig( ";
+
+const char* temp_script_pwd = "tmp.py";
+
 void ScriptGraph(
     const char* result_dir,
     const char* graph_pwd ,
@@ -25,7 +30,7 @@ void ScriptGraph(
         Getting the file size
     */
     fseek(footage, 0, SEEK_END);
-    long footage_size = ftell(footage);
+    size_t footage_size = (size_t)ftell(footage);
     fseek(footage, 0, SEEK_SET);
 
     /*
@@ -69,10 +74,12 @@ void ScriptGraph(
     if((test_name = DirGetNextFileName(dir)) != NULL)
     {
         fprintf(python, "'%s'", test_name);
+        free(test_name);
     }
     while((test_name = DirGetNextFileName(dir)) != NULL)
     {
         fprintf(python, ", '%s'", test_name);
+        free(test_name);
     }
     DirDtor(dir);
 

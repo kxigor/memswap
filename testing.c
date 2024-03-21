@@ -7,7 +7,8 @@ void test_2();
 
 int main(void)
 {
-    test_1();
+
+    //test_1();
     test_2();
 }
 
@@ -53,6 +54,27 @@ void test_1()
         "./result/1",
         "memswap_tmp08",
         memswap_tmp8
+    );
+
+    start_testing(
+        "./tests/big_tests",
+        "./result/1",
+        "memswap_add64",
+        memswap_add64
+    );
+
+    start_testing(
+        "./tests/big_tests",
+        "./result/1",
+        "memswap_add32",
+        memswap_add32
+    );
+
+    start_testing(
+        "./tests/big_tests",
+        "./result/1",
+        "memswap_add08",
+        memswap_add8
     );
 
     ScriptGraph(
@@ -104,6 +126,27 @@ void test_2()
         "./result/2",
         "memswap_tmp08",
         memswap_tmp8
+    );
+
+    start_testing(
+        "./tests/very_small_tests",
+        "./result/2",
+        "memswap_add64",
+        memswap_add64
+    );
+
+    start_testing(
+        "./tests/very_small_tests",
+        "./result/2",
+        "memswap_add32",
+        memswap_add32
+    );
+
+    start_testing(
+        "./tests/very_small_tests",
+        "./result/2",
+        "memswap_add08",
+        memswap_add8
     );
 
     ScriptGraph(

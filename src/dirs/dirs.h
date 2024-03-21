@@ -1,6 +1,8 @@
 #ifndef DIRS_H
 #define DIRS_H
 
+#include <stdlib.h>
+
 #include <assert.h>
 #include <dirent.h>
 #include <malloc.h>

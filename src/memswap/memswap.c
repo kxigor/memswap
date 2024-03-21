@@ -162,3 +162,77 @@ void memswap_tmp8(void* a, void* b, size_t sze)
         ptr_8_a++, ptr_8_b++  ;
     }
 }
+
+void memswap_add64(void* a, void* b, size_t sze)
+{
+    int64_t* ptr_64_a = (int64_t*)a;
+    int64_t* ptr_64_b = (int64_t*)b;
+
+    while (sze >= SZE64)
+    {
+        *ptr_64_a = *ptr_64_a + *ptr_64_b;
+        *ptr_64_b = *ptr_64_a - *ptr_64_b;
+        *ptr_64_a = *ptr_64_a - *ptr_64_b;
+
+        sze -= SZE64;
+        ptr_64_a++, ptr_64_b++  ;
+    }
+
+    int8_t* ptr_8_a = (int8_t*)ptr_64_a;
+    int8_t* ptr_8_b = (int8_t*)ptr_64_b;
+
+    while (sze > 0)
+    {
+        *ptr_8_a = *ptr_8_a + *ptr_8_b;
+        *ptr_8_b = *ptr_8_a - *ptr_8_b;
+        *ptr_8_a = *ptr_8_a - *ptr_8_b;
+        
+        sze -= SZE8;
+        ptr_8_a++, ptr_8_b++  ;
+    }
+}
+
+void memswap_add32(void* a, void* b, size_t sze)
+{
+    int32_t* ptr_32_a = (int32_t*)a;
+    int32_t* ptr_32_b = (int32_t*)b;
+
+    while (sze >= SZE32)
+    {
+        *ptr_32_a = *ptr_32_a + *ptr_32_b;
+        *ptr_32_b = *ptr_32_a - *ptr_32_b;
+        *ptr_32_a = *ptr_32_a - *ptr_32_b;
+
+        sze -= SZE32;
+        ptr_32_a++, ptr_32_b++  ;
+    }
+
+    int8_t* ptr_8_a = (int8_t*)ptr_32_a;
+    int8_t* ptr_8_b = (int8_t*)ptr_32_b;
+
+    while (sze > 0)
+    {
+        *ptr_8_a = *ptr_8_a + *ptr_8_b;
+        *ptr_8_b = *ptr_8_a - *ptr_8_b;
+        *ptr_8_a = *ptr_8_a - *ptr_8_b;
+        
+        sze -= SZE8;
+        ptr_8_a++, ptr_8_b++  ;
+    }
+}
+
+void memswap_add8(void* a, void* b, size_t sze)
+{
+    int8_t* ptr_8_a = (int8_t*)a;
+    int8_t* ptr_8_b = (int8_t*)b;
+
+    while (sze > 0)
+    {
+        *ptr_8_a = *ptr_8_a + *ptr_8_b;
+        *ptr_8_b = *ptr_8_a - *ptr_8_b;
+        *ptr_8_a = *ptr_8_a - *ptr_8_b;
+        
+        sze -= SZE8;
+        ptr_8_a++, ptr_8_b++  ;
+    }
+}
