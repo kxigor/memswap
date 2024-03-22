@@ -78,21 +78,25 @@
 int main(void)
 {
 //------------------------------ Sector 1, without flags
-    /*
-    test_all(1, "./tests/big_tests");
-    test_all(2, "./tests/big_lot_same");
-    test_all(3, "./tests/very_small_tests");
-    */
+    
+    // test_all(1, "./tests/big_tests");
+    // test_all(2, "./tests/big_lot_same");
+    // test_all(3, "./tests/very_small_tests");
+    // test_all(4, "./tests/very_big")
+    
 //------------------------------ Sector 2, with -O3
-    /*
-    test_all(4, "./tests/big_tests");
-    test_all(5, "./tests/big_lot_same");
-    test_all(6, "./tests/very_small_tests");
-    */
-//------------------------------ Sector 3, with numerous flags
-    
-    test_all(7, "./tests/big_tests");
-    test_all(8, "./tests/big_lot_same");
-    test_all(9, "./tests/very_small_tests");
-    
+    // test_all(5, "./tests/big_tests");
+    // test_all(6, "./tests/big_lot_same");
+    // test_all(7, "./tests/very_small_tests");
+    // test_all(8, "./tests/very_big");
+//------------------------------ Sector 3, with numerous flags (without -O3)
+    // test_all(9, "./tests/big_tests");
+    // test_all(10, "./tests/big_lot_same");
+    // test_all(11, "./tests/very_small_tests");
+    // test_all(12, "./tests/very_big");
+//------------------------------ Sector 3, with numerous flags (with -O3)
+    test_all(13, "./tests/big_tests");
+    test_all(14, "./tests/big_lot_same");
+    test_all(15, "./tests/very_small_tests");
+    test_all(16, "./tests/very_big");
 }

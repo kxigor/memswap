@@ -36,7 +36,7 @@ void start_testing(
     char output_file_pwd[PATH_MAX] = {};
     sprintf(
         output_file_pwd ,
-        "%s/%s.stress"     ,
+        "%s/%s.stress"  ,
         tests_out_dir   ,
         swap_name
     );
@@ -111,16 +111,19 @@ void do_test(
     assert(in_file_size % 2 == 0);
     size_t block_sze = in_file_size / 2;
 
-    BYTE* result_buffer = calloc(in_file_size, sizeof(BYTE));
-    assert(result_buffer != NULL);
+    BYTE* f_block_stable  = calloc(block_sze, sizeof(BYTE));
+    BYTE* s_block_stable  = calloc(block_sze, sizeof(BYTE));
+    assert(f_block_stable != NULL);
+    assert(s_block_stable != NULL);
+    memcpy(f_block_stable, buffer               , block_sze);
+    memcpy(s_block_stable, buffer + block_sze   , block_sze);
 
-    memcpy(result_buffer, buffer, in_file_size * sizeof(BYTE));
-
-    BYTE* f_block_stable  = buffer;
-    BYTE* s_block_stable  = buffer + block_sze;
-
-    BYTE* f_block_testing = result_buffer;
-    BYTE* s_block_testing = result_buffer + block_sze;
+    BYTE* f_block_testing = calloc(block_sze, sizeof(BYTE));
+    BYTE* s_block_testing = calloc(block_sze, sizeof(BYTE));
+    assert(f_block_testing != NULL);
+    assert(s_block_testing != NULL);
+    memcpy(f_block_testing, buffer               , block_sze);
+    memcpy(s_block_testing, buffer + block_sze   , block_sze);
 
     clock_t start = clock();
     swap_testing(
@@ -141,11 +144,17 @@ void do_test(
     );
 
     assert(
-        strncmp(
-            (char*)buffer       , 
-            (char*)result_buffer, 
-            in_file_size
-        ) == 0
+        (strncmp(
+            (char*)f_block_stable , 
+            (char*)f_block_testing, 
+            block_sze
+        ) == 0)
+        &&
+        (strncmp(
+            (char*)s_block_stable , 
+            (char*)s_block_testing, 
+            block_sze
+        ) == 0)
     );
 
     fprintf(
@@ -155,7 +164,10 @@ void do_test(
         (double)(stop - start) / (double)CLOCKS_PER_SEC
     );
 
-    free(result_buffer);
+    free(f_block_stable);
+    free(s_block_stable);
+    free(f_block_testing);
+    free(s_block_testing);
     free(buffer);
 }
 
