@@ -11,18 +11,19 @@ In these tests, we will look at several implementations of swap: tmp, xor, add. 
 
 ### Important notes
 <div align="justify">
-Processor: 13th Gen Intel(R) Core(TM) i9-13900KF
-The compiler: gcc (Debian 12.2.0-14) 12.2.0
+Processor: 13th Gen Intel(R) Core(TM) i9-13900KF <br/>
+Compiler : gcc (Debian 12.2.0-14) 12.2.0
 </div>
 
 ### Compilation Notes
 <div align="justify">
-To compile, you will need make, gcc, python3.
-Python 3 is needed for plotting.
-The moisture you choose in the Makefile, there will be improvements at this point in the near future.
-The footage of the graph generator can be found in /src/graphs_generator/Footage.py. If you want to create graphs that you prefer, you can modify it. Just remember that some comments cannot be edited, so be careful.
-The compilation looks like this
+To compile, you will need make, gcc, python3. <br/>
+Python 3 is needed for plotting. <br/>
+The moisture you choose in the Makefile, there will be improvements at this point in the near future. <br/>
+The footage of the graph generator can be found in /src/graphs_generator/Footage.py. If you want to create graphs that you prefer, you can modify it. Just remember that some comments cannot be edited, so be careful. <br/>
+The compilation looks like this:
 </div>
+
 ```bash
 make
 ```
@@ -81,4 +82,22 @@ Graph for small tests (from 100 to 10000 bytes in increments of 1, 20 identical 
 <div style="text-align:center"><img src="./graphs/test11.png" /></div>
 Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
 <div style="text-align:center"><img src="./graphs/test12.png" /></div>
+</div>
+
+### With numerous debagging flags (with -O3)
+
+The numerous compilation flags mean the following:
+```make
+-D _DEBUG -ggdb3 -Wall -Wextra  -Waggressive-loop-optimizations -Wmissing-declarations -Wcast-align -Wcast-qual -Wchar-subscripts -Wconversion -Wempty-body -Wfloat-equal -Wformat-nonliteral -Wformat-security -Wformat-signedness -Wformat=2 -Winline -Wlogical-op -Wopenmp-simd -Wpacked -Wpointer-arith -Winit-self -Wredundant-decls -Wshadow -Wsign-conversion -Wstrict-overflow=2 -Wsuggest-attribute=noreturn -Wsuggest-final-methods -Wsuggest-final-types -Wswitch-default -Wswitch-enum -Wsync-nand -Wundef -Wunreachable-code -Wunused -Wvariadic-macros -Wno-missing-field-initializers -Wno-narrowing -Wno-varargs -Wstack-protector -fcheck-new -fstack-protector -fstrict-overflow -flto-odr-type-merging -fno-omit-frame-pointer -Wlarger-than=8192 -Wstack-usage=8192 -pie -fPIE -Werror=vla -fsanitize=address,alignment,bool,bounds,enum,float-cast-overflow,float-divide-by-zero,integer-divide-by-zero,leak,nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,signed-integer-overflow,undefined,unreachable,vla-bound,vptr
+```
+
+<div align="justify">
+Graph for large tests (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests each).
+<div style="text-align:center"><img src="./graphs/test13.png" /></div>
+Graph for large tests, elements are often repeated (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests, byte values within 10-20).
+<div style="text-align:center"><img src="./graphs/test14.png" /></div>
+Graph for small tests (from 100 to 10000 bytes in increments of 1, 20 identical tests, i.e. 200,000 tests). I tried, but I couldn't make the graph look beautiful.
+<div style="text-align:center"><img src="./graphs/test15.png" /></div>
+Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
+<div style="text-align:center"><img src="./graphs/test16.png" /></div>
 </div>
