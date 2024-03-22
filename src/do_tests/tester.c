@@ -36,7 +36,7 @@ void start_testing(
     char output_file_pwd[PATH_MAX] = {};
     sprintf(
         output_file_pwd ,
-        "%s/%s.out"     ,
+        "%s/%s.stress"     ,
         tests_out_dir   ,
         swap_name
     );

@@ -9,7 +9,7 @@ PROGNAME = gen_tests
 all: compile
 
 compile:
-	@gcc $(CFLAGS) gen_test.c ../dirs/dirs.c -o gen_tests
+	@gcc $(CFLAGS) gen_test.c ../dirs/dirs.c -o gen_tests.out
 
 clean:
 	@rm gen_tests

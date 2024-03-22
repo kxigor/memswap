@@ -2,230 +2,97 @@
 #include "src/memswap/memswap.h"
 #include "src/graphs_generator/gen_graph.h"
 
-void test_1();
-void test_2();
-void test_3();
+#define test_all(number, test_dir)              \
+    do                                          \
+    {                                           \
+        start_testing(                          \
+            test_dir,                           \
+            "./result/" #number,                \
+            "memswap_xor64",                    \
+            memswap_xor64                       \
+        );                                      \
+                                                \
+        start_testing(                          \
+            test_dir,                           \
+            "./result/" #number,                \
+            "memswap_xor32",                    \
+            memswap_xor32                       \
+        );                                      \
+                                                \
+        start_testing(                          \
+            test_dir,                           \
+            "./result/" #number,                \
+            "memswap_xor08",                    \
+            memswap_xor8                        \
+        );                                      \
+                                                \
+        start_testing(                          \
+            test_dir,                           \
+            "./result/" #number,                \
+            "memswap_tmp64",                    \
+            memswap_tmp64                       \
+        );                                      \
+                                                \
+        start_testing(                          \
+            test_dir,                           \
+            "./result/" #number,                \
+            "memswap_tmp32",                    \
+            memswap_tmp32                       \
+        );                                      \
+                                                \
+        start_testing(                          \
+            test_dir,                           \
+            "./result/" #number,                \
+            "memswap_tmp08",                    \
+            memswap_tmp8                        \
+        );                                      \
+                                                \
+        start_testing(                          \
+            test_dir,                           \
+            "./result/" #number,                \
+            "memswap_add64",                    \
+            memswap_add64                       \
+        );                                      \
+                                                \
+        start_testing(                          \
+            test_dir,                           \
+            "./result/" #number,                \
+            "memswap_add32",                    \
+            memswap_add32                       \
+        );                                      \
+                                                \
+        start_testing(                          \
+            test_dir,                           \
+            "./result/" #number,                \
+            "memswap_add08",                    \
+            memswap_add8                        \
+        );                                      \
+                                                \
+        ScriptGraph(                            \
+            "./result/" #number,                \
+            "./graphs/test"#number".png",       \
+            "./src/graphs_generator/Footage.py" \
+        );                                      \
+    } while (0);
 
 int main(void)
 {
-
-    test_1();
-    test_2();
-    test_3();
-}
-
-void test_1()
-{
-    start_testing(
-        "./tests/big_tests",
-        "./result/1",
-        "memswap_xor64",
-        memswap_xor64
-    );
-
-    start_testing(
-        "./tests/big_tests",
-        "./result/1",
-        "memswap_xor32",
-        memswap_xor32
-    );
-
-    start_testing(
-        "./tests/big_tests",
-        "./result/1",
-        "memswap_xor08",
-        memswap_xor8
-    );
-
-    start_testing(
-        "./tests/big_tests",
-        "./result/1",
-        "memswap_tmp64",
-        memswap_tmp64
-    );
-
-    start_testing(
-        "./tests/big_tests",
-        "./result/1",
-        "memswap_tmp32",
-        memswap_tmp32
-    );
-
-    start_testing(
-        "./tests/big_tests",
-        "./result/1",
-        "memswap_tmp08",
-        memswap_tmp8
-    );
-
-    start_testing(
-        "./tests/big_tests",
-        "./result/1",
-        "memswap_add64",
-        memswap_add64
-    );
-
-    start_testing(
-        "./tests/big_tests",
-        "./result/1",
-        "memswap_add32",
-        memswap_add32
-    );
-
-    start_testing(
-        "./tests/big_tests",
-        "./result/1",
-        "memswap_add08",
-        memswap_add8
-    );
-
-    ScriptGraph(
-        "./result/1",
-        "./graphs/test1.png",
-        "./src/graphs_generator/Footage.py"
-    );
-}
-
-void test_2()
-{
-    start_testing(
-        "./tests/big_lot_same",
-        "./result/2",
-        "memswap_xor64",
-        memswap_xor64
-    );
-
-    start_testing(
-        "./tests/big_lot_same",
-        "./result/2",
-        "memswap_xor32",
-        memswap_xor32
-    );
-
-    start_testing(
-        "./tests/big_lot_same",
-        "./result/2",
-        "memswap_xor08",
-        memswap_xor8
-    );
-
-    start_testing(
-        "./tests/big_lot_same",
-        "./result/2",
-        "memswap_tmp64",
-        memswap_tmp64
-    );
-
-    start_testing(
-        "./tests/big_lot_same",
-        "./result/2",
-        "memswap_tmp32",
-        memswap_tmp32
-    );
-
-    start_testing(
-        "./tests/big_lot_same",
-        "./result/2",
-        "memswap_tmp08",
-        memswap_tmp8
-    );
-
-    start_testing(
-        "./tests/big_lot_same",
-        "./result/2",
-        "memswap_add64",
-        memswap_add64
-    );
-
-    start_testing(
-        "./tests/big_lot_same",
-        "./result/2",
-        "memswap_add32",
-        memswap_add32
-    );
-
-    start_testing(
-        "./tests/big_lot_same",
-        "./result/2",
-        "memswap_add08",
-        memswap_add8
-    );
-
-    ScriptGraph(
-        "./result/2",
-        "./graphs/test2.png",
-        "./src/graphs_generator/Footage.py"
-    );
-}
-
-void test_3()
-{
-    start_testing(
-        "./tests/very_small_tests",
-        "./result/3",
-        "memswap_xor64",
-        memswap_xor64
-    );
-
-    start_testing(
-        "./tests/very_small_tests",
-        "./result/3",
-        "memswap_xor32",
-        memswap_xor32
-    );
-
-    start_testing(
-        "./tests/very_small_tests",
-        "./result/3",
-        "memswap_xor08",
-        memswap_xor8
-    );
-
-    start_testing(
-        "./tests/very_small_tests",
-        "./result/3",
-        "memswap_tmp64",
-        memswap_tmp64
-    );
-
-    start_testing(
-        "./tests/very_small_tests",
-        "./result/3",
-        "memswap_tmp32",
-        memswap_tmp32
-    );
-
-    start_testing(
-        "./tests/very_small_tests",
-        "./result/3",
-        "memswap_tmp08",
-        memswap_tmp8
-    );
-
-    start_testing(
-        "./tests/very_small_tests",
-        "./result/3",
-        "memswap_add64",
-        memswap_add64
-    );
-
-    start_testing(
-        "./tests/very_small_tests",
-        "./result/3",
-        "memswap_add32",
-        memswap_add32
-    );
-
-    start_testing(
-        "./tests/very_small_tests",
-        "./result/3",
-        "memswap_add08",
-        memswap_add8
-    );
-
-    ScriptGraph(
-        "./result/3",
-        "./graphs/test3.png",
-        "./src/graphs_generator/Footage.py"
-    );
+//------------------------------ Sector 1, without flags
+    /*
+    test_all(1, "./tests/big_tests");
+    test_all(2, "./tests/big_lot_same");
+    test_all(3, "./tests/very_small_tests");
+    */
+//------------------------------ Sector 2, with -O3
+    /*
+    test_all(4, "./tests/big_tests");
+    test_all(5, "./tests/big_lot_same");
+    test_all(6, "./tests/very_small_tests");
+    */
+//------------------------------ Sector 3, with numerous flags
+    
+    test_all(7, "./tests/big_tests");
+    test_all(8, "./tests/big_lot_same");
+    test_all(9, "./tests/very_small_tests");
+    
 }
