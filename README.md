@@ -66,14 +66,14 @@ make
 </div>
 
 ### With the flag -O3
-<div align="justify">
-    Graph for large tests (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests each).
+<div align="center">
+    Graph for large tests
     <div style="text-align:center"><img src="./graphs/test5.png" /></div>
-    Graph for large tests, elements are often repeated (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests, byte values within 10-20).
+    Graph for large tests, elements are often repeated
     <div style="text-align:center"><img src="./graphs/test6.png" /></div>
-    Graph for small tests (from 100 to 10000 bytes in increments of 1, 20 identical tests, i.e. 200,000 tests). I tried, but I couldn't make the graph look beautiful.
+    Graph for small tests
     <div style="text-align:center"><img src="./graphs/test7.png" /></div>
-    Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
+    Graph for very large tests
     <div style="text-align:center"><img src="./graphs/test8.png" /></div>
 </div>
 
@@ -84,14 +84,14 @@ The numerous compilation flags mean the following:
 -D _DEBUG -ggdb3 -Wall -Wextra  -Waggressive-loop-optimizations -Wmissing-declarations -Wcast-align -Wcast-qual -Wchar-subscripts -Wconversion -Wempty-body -Wfloat-equal -Wformat-nonliteral -Wformat-security -Wformat-signedness -Wformat=2 -Winline -Wlogical-op -Wopenmp-simd -Wpacked -Wpointer-arith -Winit-self -Wredundant-decls -Wshadow -Wsign-conversion -Wstrict-overflow=2 -Wsuggest-attribute=noreturn -Wsuggest-final-methods -Wsuggest-final-types -Wswitch-default -Wswitch-enum -Wsync-nand -Wundef -Wunreachable-code -Wunused -Wvariadic-macros -Wno-missing-field-initializers -Wno-narrowing -Wno-varargs -Wstack-protector -fcheck-new -fstack-protector -fstrict-overflow -flto-odr-type-merging -fno-omit-frame-pointer -Wlarger-than=8192 -Wstack-usage=8192 -pie -fPIE -Werror=vla -fsanitize=address,alignment,bool,bounds,enum,float-cast-overflow,float-divide-by-zero,integer-divide-by-zero,leak,nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,signed-integer-overflow,undefined,unreachable,vla-bound,vptr
 ```
 
-<div align="justify">
-    Graph for large tests (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests each).
+<div align="center">
+    Graph for large tests
     <div style="text-align:center"><img src="./graphs/test9.png" /></div>
-    Graph for large tests, elements are often repeated (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests, byte values within 10-20).
+    Graph for large tests, elements are often repeated
     <div style="text-align:center"><img src="./graphs/test10.png" /></div>
-    Graph for small tests (from 100 to 10000 bytes in increments of 1, 20 identical tests, i.e. 200,000 tests). I tried, but I couldn't make the graph look beautiful.
+    Graph for small tests
     <div style="text-align:center"><img src="./graphs/test11.png" /></div>
-    Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
+    Graph for very large tests
     <div style="text-align:center"><img src="./graphs/test12.png" /></div>
 </div>
 
@@ -102,14 +102,14 @@ The numerous compilation flags mean the following:
 -D _DEBUG -ggdb3 -Wall -Wextra  -Waggressive-loop-optimizations -Wmissing-declarations -Wcast-align -Wcast-qual -Wchar-subscripts -Wconversion -Wempty-body -Wfloat-equal -Wformat-nonliteral -Wformat-security -Wformat-signedness -Wformat=2 -Winline -Wlogical-op -Wopenmp-simd -Wpacked -Wpointer-arith -Winit-self -Wredundant-decls -Wshadow -Wsign-conversion -Wstrict-overflow=2 -Wsuggest-attribute=noreturn -Wsuggest-final-methods -Wsuggest-final-types -Wswitch-default -Wswitch-enum -Wsync-nand -Wundef -Wunreachable-code -Wunused -Wvariadic-macros -Wno-missing-field-initializers -Wno-narrowing -Wno-varargs -Wstack-protector -fcheck-new -fstack-protector -fstrict-overflow -flto-odr-type-merging -fno-omit-frame-pointer -Wlarger-than=8192 -Wstack-usage=8192 -pie -fPIE -Werror=vla -fsanitize=address,alignment,bool,bounds,enum,float-cast-overflow,float-divide-by-zero,integer-divide-by-zero,leak,nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,signed-integer-overflow,undefined,unreachable,vla-bound,vptr
 ```
 
-<div align="justify">
-    Graph for large tests (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests each).
+<div align="center">
+    <h4>Graph for large tests</h4>
     <div style="text-align:center"><img src="./graphs/test13.png" /></div>
-    Graph for large tests, elements are often repeated (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests, byte values within 10-20).
+    <h4>Graph for large tests, elements are often repeated</h4>
     <div style="text-align:center"><img src="./graphs/test14.png" /></div>
-    Graph for small tests (from 100 to 10000 bytes in increments of 1, 20 identical tests, i.e. 200,000 tests). I tried, but I couldn't make the graph look beautiful.
+    <h4>Graph for small tests</h4>
     <div style="text-align:center"><img src="./graphs/test15.png" /></div>
-    Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
+    <h4>Graph for very large tests</h4>
     <div style="text-align:center"><img src="./graphs/test16.png" /></div>
 </div>
 
