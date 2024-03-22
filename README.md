@@ -48,7 +48,7 @@ Graph for large tests, elements are often repeated (from 10000 to 10000000 bytes
 <div style="text-align:center"><img src="./graphs/test2.png" /></div>
 Graph for small tests (from 100 to 10000 bytes in increments of 1, 20 identical tests, i.e. 200,000 tests). I tried, but I couldn't make the graph look beautiful.
 <div style="text-align:center"><img src="./graphs/test3.png" /></div>
-Graph for very large texts (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
+Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
 <div style="text-align:center"><img src="./graphs/test4.png" /></div>
 except uint8_t, it is necessary to separately reach the remainder of the division).
 </div>
@@ -61,7 +61,7 @@ Graph for large tests, elements are often repeated (from 10000 to 10000000 bytes
 <div style="text-align:center"><img src="./graphs/test6.png" /></div>
 Graph for small tests (from 100 to 10000 bytes in increments of 1, 20 identical tests, i.e. 200,000 tests). I tried, but I couldn't make the graph look beautiful.
 <div style="text-align:center"><img src="./graphs/test7.png" /></div>
-Graph for very large texts (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
+Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
 <div style="text-align:center"><img src="./graphs/test8.png" /></div>
 </div>
 
@@ -79,6 +79,6 @@ Graph for large tests, elements are often repeated (from 10000 to 10000000 bytes
 <div style="text-align:center"><img src="./graphs/test10.png" /></div>
 Graph for small tests (from 100 to 10000 bytes in increments of 1, 20 identical tests, i.e. 200,000 tests). I tried, but I couldn't make the graph look beautiful.
 <div style="text-align:center"><img src="./graphs/test11.png" /></div>
-Graph for very large texts (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
+Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
 <div style="text-align:center"><img src="./graphs/test12.png" /></div>
 </div>
