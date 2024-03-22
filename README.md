@@ -2,17 +2,19 @@
 
 ## Introduction
 <div align="justify">
-I came across xor-swap and started using it regularly. It looked beautiful and felt like it was working faster. However, at some point, I began to doubt how well it functioned and decided to do some specific and honest testing.
+    I came across xor-swap and started using it regularly. It looked beautiful and felt like it was working faster. However, at some point, I began to doubt how well it functioned and decided to do some specific and honest testing.
 </div>
 
 <div align="justify">
-In these tests, we will look at several implementations of swap: tmp, xor, add. More information about the algorithms themselves can be found here https://en.wikipedia.org/wiki/XOR_swap_algorithm.
+    In these tests, we will look at several implementations of swap: tmp, xor, add. More information about the algorithms themselves can be found here https://en.wikipedia.org/wiki/XOR_swap_algorithm.
 </div>
 
 ### Important notes
 <div align="justify">
-Processor: 13th Gen Intel(R) Core(TM) i9-13900KF <br/>
-Compiler : gcc (Debian 12.2.0-14) 12.2.0
+    <ul>
+        <li>Processor: 13th Gen Intel(R) Core(TM) i9-13900KF </li>
+        <li>Compiler : gcc (Debian 12.2.0-14) 12.2.0</li>
+    </ul>
 </div>
 
 ### Compilation Notes
@@ -30,41 +32,49 @@ Compiler : gcc (Debian 12.2.0-14) 12.2.0
 make
 ```
 <div align="justify">
-The test generator is compiled separately, I will also fix this point in the future.
+    The test generator is compiled separately, I will also fix this point in the future.
 </div>
 
 ## Tests
 <div align="justify">
-We will test using different compilation flags in order to get a better understanding of the situation. The testing process is straightforward - the program reads the input from a file and measures how long it takes for the algorithm to run on this data (at the same time, we also check whether the algorithm is producing the correct output).
+    We will test using different compilation flags in order to get a better understanding of the situation. The testing process is straightforward - the program reads the input from a file and measures how long it takes for the algorithm to run on this data (at the same time, we also check whether the algorithm is producing the correct output).
 </div>
 
 ### A note on algorithms
 <div align="justify">
-Three implementations are given for each algorithm. Generally speaking, this only means the size of the pointer that is used for swap, i.e. uint64_t, uint32_t, uint8_t. (In all cases, except uint8_t, it is necessary to separately reach the remainder of the division).
+    Three implementations are given for each algorithm. Generally speaking, this only means the size of the pointer that is used for swap, i.e. uint64_t, uint32_t, uint8_t. (In all cases, except uint8_t, it is necessary to separately reach the remainder of the division).
 </div>
 
+### Description of the tests
+<ul>
+    <li>Graph for large tests: from 10000 to 10000000 bytes in increments of 1000, 5 identical tests each;</li>
+    <li>Graph for large tests, elements are often repeated: from 10000 to 10000000 bytes in increments of 1000, 5 identical tests, byte values within 10-20;</li>
+    <li>Graph for small tests: from 100 to 10000 bytes in increments of 1, 20 identical tests, i.e. 200,000 tests;</li>
+    <li>Graph for very large tests: 1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB</li>
+</ul>
+
 ### Without compilation flags
-<div align="justify">
-Graph for large tests (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests each).
-<div style="text-align:center"><img src="./graphs/test1.png" /></div>
-Graph for large tests, elements are often repeated (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests, byte values within 10-20).
-<div style="text-align:center"><img src="./graphs/test2.png" /></div>
-Graph for small tests (from 100 to 10000 bytes in increments of 1, 20 identical tests, i.e. 200,000 tests). I tried, but I couldn't make the graph look beautiful.
-<div style="text-align:center"><img src="./graphs/test3.png" /></div>
-Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
-<div style="text-align:center"><img src="./graphs/test4.png" /></div>
+<div align="center">
+    Graph for large tests
+    <div style="text-align:center"><img src="./graphs/test1.png" /></div>
+    Graph for large tests, elements are often repeated
+    <div style="text-align:center"><img src="./graphs/test2.png" /></div>
+    Graph for small tests
+    <div style="text-align:center"><img src="./graphs/test3.png" /></div>
+    Graph for very large tests
+    <div style="text-align:center"><img src="./graphs/test4.png" /></div>
 </div>
 
 ### With the flag -O3
 <div align="justify">
-Graph for large tests (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests each).
-<div style="text-align:center"><img src="./graphs/test5.png" /></div>
-Graph for large tests, elements are often repeated (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests, byte values within 10-20).
-<div style="text-align:center"><img src="./graphs/test6.png" /></div>
-Graph for small tests (from 100 to 10000 bytes in increments of 1, 20 identical tests, i.e. 200,000 tests). I tried, but I couldn't make the graph look beautiful.
-<div style="text-align:center"><img src="./graphs/test7.png" /></div>
-Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
-<div style="text-align:center"><img src="./graphs/test8.png" /></div>
+    Graph for large tests (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests each).
+    <div style="text-align:center"><img src="./graphs/test5.png" /></div>
+    Graph for large tests, elements are often repeated (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests, byte values within 10-20).
+    <div style="text-align:center"><img src="./graphs/test6.png" /></div>
+    Graph for small tests (from 100 to 10000 bytes in increments of 1, 20 identical tests, i.e. 200,000 tests). I tried, but I couldn't make the graph look beautiful.
+    <div style="text-align:center"><img src="./graphs/test7.png" /></div>
+    Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
+    <div style="text-align:center"><img src="./graphs/test8.png" /></div>
 </div>
 
 ### With numerous debagging flags (without -O3)
@@ -75,14 +85,14 @@ The numerous compilation flags mean the following:
 ```
 
 <div align="justify">
-Graph for large tests (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests each).
-<div style="text-align:center"><img src="./graphs/test9.png" /></div>
-Graph for large tests, elements are often repeated (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests, byte values within 10-20).
-<div style="text-align:center"><img src="./graphs/test10.png" /></div>
-Graph for small tests (from 100 to 10000 bytes in increments of 1, 20 identical tests, i.e. 200,000 tests). I tried, but I couldn't make the graph look beautiful.
-<div style="text-align:center"><img src="./graphs/test11.png" /></div>
-Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
-<div style="text-align:center"><img src="./graphs/test12.png" /></div>
+    Graph for large tests (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests each).
+    <div style="text-align:center"><img src="./graphs/test9.png" /></div>
+    Graph for large tests, elements are often repeated (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests, byte values within 10-20).
+    <div style="text-align:center"><img src="./graphs/test10.png" /></div>
+    Graph for small tests (from 100 to 10000 bytes in increments of 1, 20 identical tests, i.e. 200,000 tests). I tried, but I couldn't make the graph look beautiful.
+    <div style="text-align:center"><img src="./graphs/test11.png" /></div>
+    Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
+    <div style="text-align:center"><img src="./graphs/test12.png" /></div>
 </div>
 
 ### With numerous debagging flags (with -O3)
@@ -93,19 +103,19 @@ The numerous compilation flags mean the following:
 ```
 
 <div align="justify">
-Graph for large tests (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests each).
-<div style="text-align:center"><img src="./graphs/test13.png" /></div>
-Graph for large tests, elements are often repeated (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests, byte values within 10-20).
-<div style="text-align:center"><img src="./graphs/test14.png" /></div>
-Graph for small tests (from 100 to 10000 bytes in increments of 1, 20 identical tests, i.e. 200,000 tests). I tried, but I couldn't make the graph look beautiful.
-<div style="text-align:center"><img src="./graphs/test15.png" /></div>
-Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
-<div style="text-align:center"><img src="./graphs/test16.png" /></div>
+    Graph for large tests (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests each).
+    <div style="text-align:center"><img src="./graphs/test13.png" /></div>
+    Graph for large tests, elements are often repeated (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests, byte values within 10-20).
+    <div style="text-align:center"><img src="./graphs/test14.png" /></div>
+    Graph for small tests (from 100 to 10000 bytes in increments of 1, 20 identical tests, i.e. 200,000 tests). I tried, but I couldn't make the graph look beautiful.
+    <div style="text-align:center"><img src="./graphs/test15.png" /></div>
+    Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
+    <div style="text-align:center"><img src="./graphs/test16.png" /></div>
 </div>
 
 # Conclusion from the graphs 
 <div align="justify">
-It is clear that <strong>memswap_tmp64</strong> always wins.
+    It is clear that <strong>memswap_tmp64</strong> always wins. Therefore, it is better to always give preference to the <strong>memswap_tmp64</strong> algorithm.
 </div>
 
 ## Analysis
