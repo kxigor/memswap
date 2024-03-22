@@ -17,11 +17,13 @@ Compiler : gcc (Debian 12.2.0-14) 12.2.0
 
 ### Compilation Notes
 <div align="justify">
-To compile, you will need make, gcc, python3. <br/>
-Python 3 is needed for plotting. <br/>
-The moisture you choose in the Makefile, there will be improvements at this point in the near future. <br/>
-The footage of the graph generator can be found in /src/graphs_generator/Footage.py. If you want to create graphs that you prefer, you can modify it. Just remember that some comments cannot be edited, so be careful. <br/>
-The compilation looks like this:
+    <ul>
+        <li>To compile, you will need make, gcc, python3.</li>
+        <li>Python 3 is needed for plotting.</li>
+        <li>The moisture you choose in the Makefile, there will be improvements at this point in the near future.</li>
+        <li>The footage of the graph generator can be found in /src/graphs_generator/Footage.py. If you want to create graphs that you prefer, you can modify it. Just remember that some comments cannot be edited, so be careful.</li>
+    </ul>
+    The compilation looks like this:
 </div>
 
 ```bash
@@ -105,3 +107,6 @@ Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000,
 <div align="justify">
 It is clear that <strong>memswap_tmp64</strong> always wins.
 </div>
+
+## Analysis
+
