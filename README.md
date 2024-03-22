@@ -23,6 +23,9 @@ The test generator is compiled separately, I will also fix this point in the fut
 ## Tests
 We will test using different compilation flags in order to get a better understanding of the situation. The testing process is straightforward - the program reads the input from a file and measures how long it takes for the algorithm to run on this data (at the same time, we also check whether the algorithm is producing the correct output).
 
+### A note on algorithms
+Three implementations are given for each algorithm. Generally speaking, this only means the size of the pointer that is used for swap, i.e. uint64_t, uint32_t, uint8_t. (In all cases, except uint8_t, it is necessary to separately reach the remainder of the division).
+
 ### Without compilation flags
 Graph for large tests (from 10000 to 10000000 bytes in increments of 1000, 5 identical tests each)
 <div style="text-align:center"><img src="./graphs/test1.png" /></div>
