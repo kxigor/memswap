@@ -51,7 +51,6 @@ Graph for small tests (from 100 to 10000 bytes in increments of 1, 20 identical 
 <div style="text-align:center"><img src="./graphs/test3.png" /></div>
 Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
 <div style="text-align:center"><img src="./graphs/test4.png" /></div>
-except uint8_t, it is necessary to separately reach the remainder of the division).
 </div>
 
 ### With the flag -O3
@@ -100,4 +99,9 @@ Graph for small tests (from 100 to 10000 bytes in increments of 1, 20 identical 
 <div style="text-align:center"><img src="./graphs/test15.png" /></div>
 Graph for very large tests (1000000 to 100000000 bytes in increments of 1000000, 5 identical tests, totaling 50GB).
 <div style="text-align:center"><img src="./graphs/test16.png" /></div>
+</div>
+
+# Conclusion from the graphs 
+<div align="justify">
+It is clear that <strong>memswap_tmp64</strong> always wins.
 </div>
